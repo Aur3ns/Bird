@@ -1,0 +1,34 @@
+- Pour le jeton d'enrollement:
+docker-compose exec elasticsearch \
+  /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+
+- Résultat:
+>   /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+WARN[0000] /workspaces/Bird/omnisec-proto/infra/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+WARNING: Owner of file [/usr/share/elasticsearch/config/users] used to be [root], but now is [elasticsearch]
+WARNING: Owner of file [/usr/share/elasticsearch/config/users_roles] used to be [root], but now is [elasticsearch]
+eyJ2ZXIiOiI4LjUuMSIsImFkciI6WyIxNzIuMTguMC4zOjkyMDAiXSwiZmdyIjoiZDE5YjcxYWEwNjAwNzZkYmZiNzczZTg5YTIyMTYzZWUwMjMyM2VmMjRhZGU0M2Q5ODM3Mjk5MmYyNTM3YmQxNSIsImtleSI6Ik81bENWSllCazZDM3M2WkFrYkNtOnQzeUR1MXBWUjcyUWs4Q0FZTFNjeFEifQ==
+
+===================================================================================================================================================================================================================================================================
+
+- Commande pour récupérer le code pour la vérification:
+docker-compose exec kibana \
+  bin/kibana-verification-code
+
+- Résultat:
+>   bin/kibana-verification-code
+WARN[0000] /workspaces/Bird/omnisec-proto/infra/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+Your verification code is:  315 841 
+
+===================================================================================================================================================================================================================================================================
+
+- Commande pour le service account token pour le compte système kibana_system:
+
+docker-compose exec elasticsearch \
+  /usr/share/elasticsearch/bin/elasticsearch-service-tokens create elastic/kibana kibana-token
+
+- Résultat:
+>   /usr/share/elasticsearch/bin/elasticsearch-service-tokens create elastic/kibana kibana-token
+SERVICE_TOKEN elastic/kibana/kibana-token = AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjo0SVMwd0xXd1FUNl9sZFBkUHBPTXVB
+
+===================================================================================================================================================================================================================================================================
