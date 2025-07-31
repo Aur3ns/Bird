@@ -32,3 +32,26 @@ docker-compose exec elasticsearch \
 SERVICE_TOKEN elastic/kibana/kibana-token = AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS10b2tlbjo0SVMwd0xXd1FUNl9sZFBkUHBPTXVB
 
 ===================================================================================================================================================================================================================================================================
+
+
+
+Commande pour tout rebuild sans devoir tout redémarrer :
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      # 1) Listeners internes et externes sur deux ports distincts
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      # 2) Comment Docker et ton agent résolvent ces deux listeners
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      # 3) Mapping des protocoles
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"     # pour les containers Docker
+      - "29092:29092"   # pour ta machine hôte / Codespace
