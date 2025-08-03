@@ -1,4 +1,0 @@
-Building and linking librdkafka statically
-Running command: "cp -a librdkafka/. /workspaces/Bird/omnisec-proto/agent/target/debug/build/rdkafka-sys-d76f404c148d6105/out" in dir: .
-Running command: "/workspaces/Bird/omnisec-proto/agent/target/debug/build/rdkafka-sys-d76f404c148d6105/out/configure --disable-ssl --disable-gssapi --disable-curl --disable-zstd --disable-lz4-ext" in dir: /workspaces/Bird/omnisec-proto/agent/target/debug/build/rdkafka-sys-d76f404c148d6105/out
-Running command: "make libs" in dir: /workspaces/Bird/omnisec-proto/agent/target/debug/build/rdkafka-sys-d76f404c148d6105/out
